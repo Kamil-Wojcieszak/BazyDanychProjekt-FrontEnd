@@ -1,0 +1,73 @@
+<%- include("header") -%>
+<h1>Get products page</h1>
+<h2><a href="../index.html">Go back</a></h2>
+
+<div>
+    <form id="addProductForm" action="seller/underwear/add" method="post">
+        <input class='addProductInput' placeholder="underwearID" id="underwearID" type="text" name="underwearID">
+        <input class='addProductInput' placeholder="modelID" id="modelID" type="text" name="modelID">
+        <input class='addProductInput' placeholder="size" id="size" type="text" name="size">
+        <input class='addProductInput' placeholder="color" id="color" type="text" name="color">
+        <input class='addProductInput' placeholder="sku" id="sku" type="text" name="sku">
+        <input class='addProductInput' placeholder="ean" id="ean" type="text" name="ean">
+        <input class='addProductInput' placeholder="quantity" id="quantity" type="text" name="quantity">
+        <input class='addProductInput' placeholder="price" id="price" type="text" name="price">
+        <button id="addBtn" type="submit">Add product</button>
+    </form>
+</div>
+
+<div>
+    <form id="searchForm" action="/seller/underwear/" method="get">
+        <input type="text" name="underwearID">
+        <button type="submit">Search</button>
+        <button type="submit" formaction="/seller/underwear/delete/">Delete</button>
+    </form>
+</div>
+<h2>⬇️ Here goes product data ⬇️</h2>
+<div id="underwearResultsContainer">
+    <table>
+        <% for(var i = 0; i < productData.length; i++) { %>
+            <tr>
+                <td><%= productData[i].underwear_id %></td>
+                <td><%= productData[i].underwear_model_id %></td>
+                <td><%= productData[i].size %></td>
+                <td><%= productData[i].color %></td>
+                <td><%= productData[i].sku %></td>
+                <td><%= productData[i].ean %></td>
+                <td><%= productData[i].quantity %></td>
+                <td><%= productData[i].price %></td>
+            </tr>
+        <% } %>
+    </table>
+</div>
+<div>
+    <form id="searchForm" action="/seller/order-online/" method="get">
+        <input type="text" name="orderID">
+        <button type="submit">Search</button>
+        <button type="submit" formaction="/seller/order-online/delete/">Delete</button>
+    </form>
+</div>
+<h2>⬇️ Here goes order data ⬇️</h2>
+<div id="orderResultsContainer">
+    <table>
+        <% for(var i = 0; i < orderData.length; i++) { %>
+            <tr>
+                <td><%= orderData[i].order_on_id %></td>
+                <td><%= orderData[i].totality %></td>
+                <td><%= orderData[i].email %></td>
+                <td><%= orderData[i].date %></td>
+                <td><%= orderData[i].phone_number %></td>
+                <td>
+                    <form onchange="this.form.submit()">
+                        <select name="orderStatus">
+                            <option value=""><%= orderData[i].status %></option>
+                        </select>
+                    </form>
+                </td>
+
+            </tr>
+        <% } %>
+    </table>
+</div>
+
+<%- include("footer") -%>
