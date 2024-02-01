@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const app = express();
 
 app.set('view engine', 'ejs')
+app.use(express.static(__dirname + '/public'));
+
 
 const sellerAPI = require("./routes/seller.js")
 const clientAPI = require("./routes/client.js")
@@ -18,6 +20,7 @@ app.listen(3000, function () {
 })
 
 app.get("/", function (req, res) {
-   res.send(" <h1>Hello</h1>")
+   res.send("<a href='/seller'><h1>Seller</h1></a><a href='/client'><h1>Client</h1></a>"
+   )
 })
 

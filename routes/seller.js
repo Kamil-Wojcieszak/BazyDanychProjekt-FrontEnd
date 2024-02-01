@@ -17,17 +17,42 @@ router.get("/underwear", async function (req, res) {
     res.redirect("/seller/");
 });
 
+router.post("/", async function (req, res) {
+})
+
+router.post("/changeOrderStatus", async function (req, res) {
+
+    const x = {
+        status: req.body.orderStatus
+    }
+
+    const data = await fetch("http://localhost:8080/order-online/" + req.body.orderID, {
+        headers: {
+            'Accept': 'application/json', 'Content-Type': 'application/json'
+        }, method: "PATCH", body: JSON.stringify(x)
+    });
+
+    console.log(data);
+    // orderData = data.sort(compare);
+
+    res.redirect("/seller/order-online")
+
+
+})
+
 router.get("/order-online", async function (req, res) {
-    // let orderID
-    // if (req.query.orderID)
-    const data = await fetch("http://localhost:8080/order-online/" + req.query.orderID).then((res) => res.json());
-    orderData = data
+    let orderID = req.query.orderID
+    if (orderID === undefined)
+        orderID = ""
+    const data = await fetch("http://localhost:8080/order-online/" + orderID).then((res) => res.json());
+    orderData = data;
     res.redirect("/seller/");
 });
 
 router.get("/delete", async (req, res) => {
     console.log(req.originalUrl)
     await fetch("http://localhost:8080/underwear/" + req.query.underwearID, {method: "DELETE"});
+    res.redirect("/seller/");
 })
 
 router.post("/add", async (req, res) => {
@@ -52,6 +77,16 @@ router.post("/add", async (req, res) => {
     res.redirect("/seller/underwear")
 
 })
+
+compare = function (a) {
+    if (a.status === "FINISHED") {
+        return -1;
+    }
+    if (a.status === "AWAITING") {
+        return 1;
+    }
+    return 0;
+}
 
 
 module.exports = router
