@@ -1,12 +1,39 @@
 <%- include("header") -%>
+<h1>CART</h1>
+<div id="underwearResultsContainer">
+    <table>
+        <% if (productsInCart.length > 0) { %>
+            <% for(var i = 0; i < productsInCart.length; i++) { %>
+                <tr>
+                    <td><%= productsInCart[i].underwear_id %></td>
+                    <td><%= productsInCart[i].underwear_model_id %></td>
+                    <td><%= productsInCart[i].size %></td>
+                    <td><%= productsInCart[i].color %></td>
+                    <td><%= productsInCart[i].sku %></td>
+                    <td><%= productsInCart[i].ean %></td>
+                    <td><%= productsInCart[i].quantity %></td>
+                    <td><%= productsInCart[i].price %></td>
+                    <td style="width:25px; height:25px; text-align:center; vertical-align:middle">
+                        <form onclick="this.form.submit()" action='/client/removeFromCart' method="post">
+                            <input type="hidden" name="underwear_id" value="<%= productsInCart[i].underwear_id %>">
+                            <input type="image" src="/images/cross.png" name="submit" style="width:50px;">
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
+        <% } %>
+    </table>
+</div>
 
-<td><%= productsInCart[i].underwear_id %></td>
-<td><%= productsInCart[i].underwear_model_id %></td>
-<td><%= productsInCart[i].size %></td>
-<td><%= productsInCart[i].color %></td>
-<td><%= productsInCart[i].sku %></td>
-<td><%= productsInCart[i].ean %></td>
-<td><%= productsInCart[i].quantity %></td>
-<td><%= productsInCart[i].price %></td>
-
+<div>
+    <form id="addProductForm" action="/client/submitOrder" method="post">
+        <label>Totality</label>
+        <input class='addProductInput' id="totality" type="text" name="totality">
+        <label>Email</label>
+        <input class='addProductInput' id="email" type="text" name="email">
+        <label>Phone Number</label>
+        <input class='addProductInput' id="phone_number" type="text" name="phone_number">
+        <button id="addBtn" type="submit">Submit order</button>
+    </form>
+</div>
 <%- include("footer") -%>

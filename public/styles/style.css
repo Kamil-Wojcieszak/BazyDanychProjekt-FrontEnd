@@ -15,18 +15,18 @@ body {
 
 /* Styl dla nagłówka */
 h1 {
-    color: #008080;
+    color: #cb2fc7;
     margin-bottom: 10px;
 }
 
 h2 {
-    color: #008080;
+    color: #CB2FC7FF;
     margin-top: 20px;
 }
 
 /* Styl dla linków */
 a {
-    color: #008080;
+    color: #CB2FC7FF;
     text-decoration: none;
 }
 
@@ -48,7 +48,7 @@ input, button, select {
 
 /* Styl dla przycisków */
 button {
-    background-color: #008080;
+    background-color: #CB2FC7FF;
     color: #fff;
     cursor: pointer;
 }
@@ -74,7 +74,7 @@ td {
 
 /* Styl dla stopki */
 footer {
-    background-color: #008080;
+    background-color: #CB2FC7FF;
     color: #fff;
     text-align: center;
     padding: 10px;

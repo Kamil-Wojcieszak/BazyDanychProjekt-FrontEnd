@@ -15,7 +15,7 @@ data = ""
 app.use('/seller', sellerAPI);
 app.use('/client', clientAPI);
 
-app.listen(3000, function () {
+app.listen(4000, function () {
     console.log("Server is running on port 3000")
 })
 

@@ -1,25 +1,26 @@
 <%- include("header") -%>
 
-<a href="cart.ejs">
-    <image style="width:50px; height:50px" src="/images/9284428.png"/>
+<a href="/client/cart">
+    <image style="width:50px; height:50px" src="/images/cart.png"/>
 </a>
 <h2>⬇️ Here goes product data ⬇️</h2>
 <div id="underwearResultsContainer">
     <table>
-        <% for(var i = 0; i < productData.length; i++) { %>
+        <% for(var i = 0; i < productsData.length; i++) { %>
             <tr>
-                <td><%= productData[i].underwear_id %></td>
-                <td><%= productData[i].underwear_model_id %></td>
-                <td><%= productData[i].size %></td>
-                <td><%= productData[i].color %></td>
-                <td><%= productData[i].sku %></td>
-                <td><%= productData[i].ean %></td>
-                <td><%= productData[i].quantity %></td>
-                <td><%= productData[i].price %></td>
+                <td><%= productsData[i].underwear_id %></td>
+                <td><%= productsData[i].underwear_model_id %></td>
+                <td><%= productsData[i].size %></td>
+                <td><%= productsData[i].color %></td>
+                <td><%= productsData[i].sku %></td>
+                <td><%= productsData[i].ean %></td>
+                <td><%= productsData[i].quantity %></td>
+                <td><%= productsData[i].price %></td>
                 <td style="width:25px; height:25px; text-align:center; vertical-align:middle">
                     <form onclick="this.form.submit()" action='/client/addToCart' method="post">
-                        <input type="image" src="/images/9284428.png" name="submit" style="width:50px;">
-                        <!--                        <img onclick="this.form.submit()" src="/images/9284428.png" style="max-height:100%; max-width:100%"/>-->
+                        <input type="hidden" name="underwear_id" value="<%= productsData[i].underwear_id %>">
+                        <input type="image" src="/images/cart.png" name="submit" style="width:50px;">
+                        <!--                        <img onclick="this.form.submit()" src="/images/cart.png" style="max-height:100%; max-width:100%"/>-->
                     </form>
                 </td>
             </tr>
